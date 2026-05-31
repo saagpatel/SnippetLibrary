@@ -16,7 +16,7 @@ remote. The `legacy-origin` trap from FreeLanceInvoice and
 PersonalKBDrafter doesn't apply here.
 
 Specifically verified on `origin/main`:
-- Tip: `2ec13bb` chore: add initial CHANGELOG
+- Tip: `4e1bfba` docs(context): recover portfolio context (#6)
 - Last substantive feature commit: `9dcb1fd feat: add GitHub Actions
   CI workflow` (CI plumbing, not product feature)
 - Source tree: `SnippetLibrary/`, `Tests/`, `scripts/`,
@@ -149,7 +149,7 @@ doesn't want to operate a release pipeline yet.
 
 | Field | Value |
 |---|---|
-| `origin/main` tip | `2ec13bb` chore: add initial CHANGELOG |
+| `origin/main` tip | `4e1bfba` docs(context): recover portfolio context (#6) |
 | Last substantive commit | `9dcb1fd` feat: add GitHub Actions CI workflow |
 | Default branch | `main` |
 | Build system | Swift Package Manager (`Package.swift` + `Package.resolved`) |

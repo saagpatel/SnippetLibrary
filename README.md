@@ -12,7 +12,7 @@ SnippetLibrary is a macOS menu bar app for managing and instantly inserting reus
 - **FTS5 ranked search** — SQLite full-text search with title/content weighting and multi-word query support
 - **Tag management** — organize snippets with tags and filter by language or category
 - **Paste injection** — inserts via clipboard save/restore + simulated paste, so the snippet lands in any app
-- **Recently used** — quick access to the last 10 inserted snippets
+- **Recently used** — quick access to the last 5 inserted snippets
 - **Local semantic search** — optional Ollama embedding-based similarity search for fuzzy intent matching
 - **JSON import/export** — migrate your library between machines with merge or replace modes
 - **Launch at login** — macOS 13+ `SMAppService` integration
@@ -21,12 +21,12 @@ SnippetLibrary is a macOS menu bar app for managing and instantly inserting reus
 
 ### Prerequisites
 - Xcode 16+
-- macOS 13.0+
+- macOS 14.0+
 
 ### Installation
 ```bash
 git clone https://github.com/saagpatel/SnippetLibrary
-open SnippetLibrary.xcodeproj
+open Package.swift
 ```
 
 ### Usage
