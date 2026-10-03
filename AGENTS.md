@@ -21,7 +21,7 @@ The README describes the product surface and architecture: a floating search pan
 
 ## How To Run
 
-Build and run. Grant Input Monitoring permission for the global hotkey and Accessibility permission for paste injection when prompted, then press `Cmd+Shift+Space` to open the search panel.
+Build and run. Grant Input Monitoring permission for the global hotkey and Accessibility permission for paste injection when prompted. After granting Input Monitoring, quit and relaunch the app, then press `Cmd+Shift+Space` to open the search panel.
 
 ## Known Risks
 
