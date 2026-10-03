@@ -19,7 +19,7 @@ Open a [GitHub Issue](../../issues/new) with:
 
 ## Development Setup
 
-See the README for installation and setup instructions.
+See the [README development verification](README.md#development-verification) for macOS/Swift prerequisites, focused/full tests and safe native UI checks.
 
 ## Code Style
 
