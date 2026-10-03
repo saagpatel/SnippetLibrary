@@ -35,7 +35,12 @@ Build and run. Grant accessibility permissions when prompted (required for paste
 
 ## Development verification
 
-Run from the repository root on macOS 14+ with Swift 6 / Xcode 16+ selected.
+Run from the repository root on macOS 14+ with full Xcode 16+ (Swift 6) selected.
+Check `xcode-select -p`: Command Line Tools alone are insufficient for the
+SwiftUI `#Preview` macro plugin used by this app. If compilation reports a
+missing `PreviewsMacros` plugin, use an installed full Xcode toolchain (for
+example, set `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer` for
+that shell) before rerunning; do not remove preview code to validate docs.
 Swift Package Manager resolves GRDB and Highlightr from `Package.resolved`;
 initial dependency checkout needs network access. Review any unexpected lockfile
 change rather than treating an upgrade as verification.
