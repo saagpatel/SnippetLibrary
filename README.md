@@ -26,11 +26,53 @@ SnippetLibrary is a macOS menu bar app for managing and instantly inserting reus
 ### Installation
 ```bash
 git clone https://github.com/saagpatel/SnippetLibrary
+cd SnippetLibrary
 open Package.swift
 ```
 
 ### Usage
 Build and run. Grant accessibility permissions when prompted (required for paste injection), then press `Cmd+Shift+Space` to open the search panel.
+
+## Development verification
+
+Run from the repository root on macOS 14+ with full Xcode 16+ (Swift 6) selected.
+Check `xcode-select -p`: Command Line Tools alone are insufficient for the
+SwiftUI `#Preview` macro plugin used by this app. If compilation reports a
+missing `PreviewsMacros` plugin, use an installed full Xcode toolchain (for
+example, set `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer` for
+that shell) before rerunning; do not remove preview code to validate docs.
+Swift Package Manager resolves GRDB and Highlightr from `Package.resolved`;
+initial dependency checkout needs network access. Review any unexpected lockfile
+change rather than treating an upgrade as verification.
+
+```bash
+swift build
+swift test --filter DatabaseTests   # focused in-memory database coverage
+swift test --filter SearchTests     # focused FTS/search coverage
+swift test                         # full suite: use a disposable macOS test user
+```
+
+`make build` and `make test` wrap the first and last commands. No separate
+lint, formatter or typecheck command is configured; the build compiles Swift.
+Database/search/import tests use `AppDatabase.makeEmpty()` (in-memory SQLite),
+and paste tests inject mock clipboard/event clients. Ollama tests use invalid
+endpoints, but `OllamaService.configure()` writes endpoint/model/enabled keys
+through `UserDefaults.standard`. Saving/restoring those keys still changes
+persisted preferences during the tests. Run the broader `swift test` suite in
+a disposable macOS test user, as CI does on its ephemeral runner; keep routine
+personal-profile checks to the focused Database/Search lanes above. A running
+Ollama server is not a prerequisite for unit tests. Tests do not prove real
+paste permissions, hotkeys or successful live embeddings.
+
+For changed native UI, search, import/export or paste behavior, additionally
+check the relevant flow with synthetic snippets in a separate macOS test user.
+Normal app launch (`swift run` or Xcode Run) uses that user's
+`~/Library/Application Support/SnippetLibrary/snippets.sqlite`; it can prompt
+for Accessibility and affect the clipboard/focused app. Use a scratch text
+editor for paste checks and keep launch-at-login disabled for the test.
+Do not use a personal snippet library for verification. This is a native app,
+so browser checks are not applicable. Local build/test success is separate
+from packaging, signing and distribution, which have no configured release gate.
 
 ## Tech Stack
 
