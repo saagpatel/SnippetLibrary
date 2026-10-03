@@ -49,16 +49,20 @@ change rather than treating an upgrade as verification.
 swift build
 swift test --filter DatabaseTests   # focused in-memory database coverage
 swift test --filter SearchTests     # focused FTS/search coverage
-swift test                         # full suite, also run by macOS CI
+swift test                         # full suite: use a disposable macOS test user
 ```
 
 `make build` and `make test` wrap the first and last commands. No separate
 lint, formatter or typecheck command is configured; the build compiles Swift.
 Database/search/import tests use `AppDatabase.makeEmpty()` (in-memory SQLite),
 and paste tests inject mock clipboard/event clients. Ollama tests use invalid
-endpoints and save/restore configuration; a running Ollama server is not a
-prerequisite for unit tests. Tests do not prove real paste permissions, hotkeys
-or successful live embeddings.
+endpoints, but `OllamaService.configure()` writes endpoint/model/enabled keys
+through `UserDefaults.standard`. Saving/restoring those keys still changes
+persisted preferences during the tests. Run the broader `swift test` suite in
+a disposable macOS test user, as CI does on its ephemeral runner; keep routine
+personal-profile checks to the focused Database/Search lanes above. A running
+Ollama server is not a prerequisite for unit tests. Tests do not prove real
+paste permissions, hotkeys or successful live embeddings.
 
 For changed native UI, search, import/export or paste behavior, additionally
 check the relevant flow with synthetic snippets in a separate macOS test user.
